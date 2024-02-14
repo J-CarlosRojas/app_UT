@@ -1,9 +1,9 @@
 export interface Food {
 
     id:number;
-    name:String;
-    description:String;
-    image:String;
+    name:string;
+    description:string;
+    image:string;
     category: "drink" | "food";
     price:number
     
