@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { FoodListComponent } from './recipes/food-list/food-list.component';
 
 
 export const routes: Routes = [
 
-    { path: '', component: HomeComponent },
+    {path: 'food', loadChildren: ()=>import('./recipes/recipes.routes')}
 
 ];
