@@ -1,1 +1,40 @@
-<p>form-food works!</p>
+<!--Formulario para ingresar items-->
+<form [formGroup]="foodForm" class="flex flex-col max-w-80">
+    <!--Input name-->
+    <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input formControlName="itemName" matInput type="text">
+        <mat-error *ngIf="foodForm.get('itemName')?.invalid && foodForm.get('itemName')?.touched">
+           El Nombre es obligatorio
+        </mat-error>
+    </mat-form-field>
+    <!--Select category-->
+    <mat-form-field>
+        <mat-label>Categoria</mat-label>
+        <mat-select formControlName="itemCategory">
+            <mat-option value="food">Food</mat-option>
+            <mat-option value="drink">Drink</mat-option>
+        </mat-select>
+        <mat-error *ngIf="foodForm.get('itemCategory')?.invalid && foodForm.get('itemCategory')?.touched">
+            La categoria es obligatoria
+        </mat-error>
+    </mat-form-field>
+    <!--Description-->
+    <mat-form-field>
+        <mat-label>Descripción</mat-label>
+        <textarea matInput type="textarea" formControlName="itemDescription"></textarea>
+        <mat-error *ngIf="foodForm.get('itemDescription')?.invalid && foodForm.get('itemDescription')?.touched">
+            Una descripcion mayor a 20 caracteres es obligatoria
+        </mat-error>
+    </mat-form-field>
+    <!--Price-->
+    <mat-form-field>
+        <mat-label>Precio</mat-label>
+        <input matInput formControlName="itemPrice" type="number">
+        <mat-error *ngIf="(foodForm.get('itemPrice')?.invalid && foodForm.get('itemPrice')?.touched)||(foodForm.get('itemPrice')?.errors?.['positiveNumber'])">
+            Un precio mayor que cero es obligatorio
+        </mat-error>
+    </mat-form-field>
+    <!--Button send-->
+    <button mat-stroked-button [disabled]="foodForm.invalid">Agregar</button>
+</form>
