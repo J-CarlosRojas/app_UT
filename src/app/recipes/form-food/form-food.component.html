@@ -1,6 +1,6 @@
 <!--Formulario para ingresar items-->
 <form [formGroup]="foodForm" class="flex flex-col max-w-80">
-    <!--Input name-->
+    <!--Input nombre-->
     <mat-form-field>
         <mat-label>Nombre</mat-label>
         <input formControlName="itemName" matInput type="text">
@@ -8,7 +8,7 @@
            El Nombre es obligatorio
         </mat-error>
     </mat-form-field>
-    <!--Select category-->
+    <!--Select categoria-->
     <mat-form-field>
         <mat-label>Categoria</mat-label>
         <mat-select formControlName="itemCategory">
@@ -19,7 +19,7 @@
             La categoria es obligatoria
         </mat-error>
     </mat-form-field>
-    <!--Description-->
+    <!--Descripción-->
     <mat-form-field>
         <mat-label>Descripción</mat-label>
         <textarea matInput type="textarea" formControlName="itemDescription"></textarea>
@@ -27,7 +27,7 @@
             Una descripcion mayor a 20 caracteres es obligatoria
         </mat-error>
     </mat-form-field>
-    <!--Price-->
+    <!--Precio-->
     <mat-form-field>
         <mat-label>Precio</mat-label>
         <input matInput formControlName="itemPrice" type="number">
@@ -35,6 +35,6 @@
             Un precio mayor que cero es obligatorio
         </mat-error>
     </mat-form-field>
-    <!--Button send-->
+    <!--Botón agregar-->
     <button mat-stroked-button [disabled]="foodForm.invalid">Agregar</button>
 </form>
