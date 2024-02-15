@@ -31,7 +31,7 @@
     <mat-form-field>
         <mat-label>Precio</mat-label>
         <input matInput formControlName="itemPrice" type="number">
-        <mat-error *ngIf="(foodForm.get('itemPrice')?.invalid && foodForm.get('itemPrice')?.touched)||(foodForm.get('itemPrice')?.errors?.['positiveNumber'])">
+        <mat-error *ngIf="foodForm.get('itemPrice')?.invalid && foodForm.get('itemPrice')?.touched">
             Un precio mayor que cero es obligatorio
         </mat-error>
     </mat-form-field>

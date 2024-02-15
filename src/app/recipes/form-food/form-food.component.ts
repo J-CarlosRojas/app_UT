@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -19,20 +19,9 @@ export class FormFoodComponent {
   foodForm = new FormGroup({
     itemName: new FormControl('', Validators.required), 
     itemCategory: new FormControl('', Validators.required), 
-    itemDescription: new FormControl('', Validators.minLength(20)), 
-    itemPrice: new FormControl('', [Validators.required, positiveNumberValidator()]) 
+    itemDescription: new FormControl('', [Validators.required, Validators.minLength(20)]), 
+    itemPrice: new FormControl('', [Validators.required, Validators.min(0.01)]) 
   });
 
-
-
 }
 
-export function positiveNumberValidator(): ValidatorFn {
-  return (control: AbstractControl): { [key: string]: any } | null => {
-    const value = control.value;
-    if (value !== null && value <= 0) {
-      return { 'positiveNumber': true };
-    }
-    return null;
-  };
-}
