@@ -1,5 +1,7 @@
 <!--Formulario para ingresar items-->
 <form [formGroup]="foodForm" class="flex flex-col max-w-80">
+
+    
     <!--Input nombre-->
     <mat-form-field>
         <mat-label>Nombre</mat-label>
@@ -23,14 +25,35 @@
     <mat-form-field>
         <mat-label>Descripción</mat-label>
         <textarea matInput type="textarea" formControlName="itemDescription"></textarea>
+
+        <mat-error>
+            @if(itemDescription?.invalid && (itemDescription?.dirty || itemDescription?.touched)){
+
+                @if(itemDescription?.hasError('required')){
+                    <span>Este campo es obligatorio</span>
+                }
+    
+                @if(itemDescription?.hasError('minlength')){
+                    <span>Debe contener al menos {{itemDescription?.getError('minlength').requiredLength}} caracteres, tiene 
+                    {{itemDescription?.getError('minlength').actualLength}}</span>
+                }
+    
+            }
+        </mat-error>
+
+
+       <!--
         <mat-error *ngIf="foodForm.get('itemDescription')?.invalid && foodForm.get('itemDescription')?.touched">
             Una descripcion mayor a 20 caracteres es obligatoria
         </mat-error>
+       --> 
     </mat-form-field>
     <!--Precio-->
-    <mat-form-field>
+    <mat-form-field class="">
         <mat-label>Precio</mat-label>
-        <input matInput formControlName="itemPrice" type="number">
+        <input matInput formControlName="itemPrice" type="number" class="price-rigth-align">
+        <span matTextPrefix>$&nbsp;</span>
+        <span matTextSuffix>.00</span>
         <mat-error *ngIf="foodForm.get('itemPrice')?.invalid && foodForm.get('itemPrice')?.touched">
             Un precio mayor que cero es obligatorio
         </mat-error>

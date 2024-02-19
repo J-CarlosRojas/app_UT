@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators, FormBuilder } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
-import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @Component({
@@ -16,12 +16,38 @@ import { MatButton, MatButtonModule } from '@angular/material/button';
 })
 export class FormFoodComponent {
 
-  foodForm = new FormGroup({
-    itemName: new FormControl('', Validators.required), 
-    itemCategory: new FormControl('', Validators.required), 
-    itemDescription: new FormControl('', [Validators.required, Validators.minLength(20)]), 
-    itemPrice: new FormControl('', [Validators.required, Validators.min(0.01)]) 
+  foodForm = this.formBuilder.group({
+    itemImage: ['',],
+    itemName: ['', Validators.required], 
+    itemCategory: ['', Validators.required], 
+    itemDescription: ['', [Validators.required, Validators.minLength(20)]], 
+    itemPrice: ['', [Validators.required, Validators.min(0.01)]]
   });
 
+  constructor(private formBuilder:FormBuilder){
+
+  }
+
+  get itemImage(){
+    return this.foodForm.get('itemImage');
+  }
+
+  get itemName(){
+    return this.foodForm.get('itemName');
+  }
+
+  get itemCategory(){
+    return this.foodForm.get('itemCategory');
+  }
+  
+  get itemDescription(){
+    return this.foodForm.get('itemDescription');
+  }
+
+  get itemPrice(){
+    return this.foodForm.get('itemPrice');
+  }
+
 }
+
 

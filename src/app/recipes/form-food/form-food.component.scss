@@ -1,0 +1,12 @@
+.price-rigth-align {
+    text-align: right;
+  }
+  
+  input.price-rigth-align::-webkit-outer-spin-button,
+  input.price-rigth-align::-webkit-inner-spin-button {
+    display: none;
+  }
+  
+  input.price-rigth-align {
+    -moz-appearance: textfield;
+  }
