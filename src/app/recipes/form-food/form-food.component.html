@@ -1,13 +1,21 @@
 <!--Formulario para ingresar items-->
 <form [formGroup]="foodForm" class="flex flex-col max-w-80">
+    <!--Input imagen-->
+    <mat-form-field>
+        <mat-label>Imagen</mat-label>
+        <input formControlName="itemImage" matInput type="text">
+        <mat-error *ngIf="foodForm.get('itemImage')?.invalid && foodForm.get('itemImage')?.touched">
+            El Nombre es obligatorio
+        </mat-error>
+    </mat-form-field>
 
-    
+
     <!--Input nombre-->
     <mat-form-field>
         <mat-label>Nombre</mat-label>
         <input formControlName="itemName" matInput type="text">
         <mat-error *ngIf="foodForm.get('itemName')?.invalid && foodForm.get('itemName')?.touched">
-           El Nombre es obligatorio
+            El Nombre es obligatorio
         </mat-error>
     </mat-form-field>
     <!--Select categoria-->
@@ -29,24 +37,24 @@
         <mat-error>
             @if(itemDescription?.invalid && (itemDescription?.dirty || itemDescription?.touched)){
 
-                @if(itemDescription?.hasError('required')){
-                    <span>Este campo es obligatorio</span>
-                }
-    
-                @if(itemDescription?.hasError('minlength')){
-                    <span>Debe contener al menos {{itemDescription?.getError('minlength').requiredLength}} caracteres, tiene 
-                    {{itemDescription?.getError('minlength').actualLength}}</span>
-                }
-    
+            @if(itemDescription?.hasError('required')){
+            <span>Este campo es obligatorio</span>
+            }
+
+            @if(itemDescription?.hasError('minlength')){
+            <span>Debe contener al menos {{itemDescription?.getError('minlength').requiredLength}} caracteres, tiene
+                {{itemDescription?.getError('minlength').actualLength}}</span>
+            }
+
             }
         </mat-error>
 
 
-       <!--
+        <!--
         <mat-error *ngIf="foodForm.get('itemDescription')?.invalid && foodForm.get('itemDescription')?.touched">
             Una descripcion mayor a 20 caracteres es obligatoria
         </mat-error>
-       --> 
+       -->
     </mat-form-field>
     <!--Precio-->
     <mat-form-field class="">
@@ -59,5 +67,6 @@
         </mat-error>
     </mat-form-field>
     <!--Botón agregar-->
-    <button mat-stroked-button [disabled]="foodForm.invalid">Agregar</button>
+    <button type="submit" mat-stroked-button [disabled]="foodForm.invalid" (click)="sendData()">Agregar</button>
+    
 </form>

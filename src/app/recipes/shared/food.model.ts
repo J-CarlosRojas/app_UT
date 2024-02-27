@@ -1,10 +1,10 @@
 export interface Food {
 
-    id:number;
+    id?:number;
     name:string;
     description:string;
     image:string;
-    category: "drink" | "food";
+    category: string;
     price:number
     
 
