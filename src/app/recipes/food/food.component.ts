@@ -6,11 +6,12 @@ import { CurrencyPipe, TitleCasePipe } from '@angular/common';
 import { FoodService } from '../shared/food.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogConfirmComponent } from '../../shared/components/dialog-confirm/dialog-confirm.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-food',
   standalone: true,
-  imports: [MatButtonModule, MatCardModule, CurrencyPipe, TitleCasePipe],
+  imports: [MatButtonModule, MatCardModule, CurrencyPipe, TitleCasePipe, RouterModule],
   templateUrl: './food.component.html',
   styleUrl: './food.component.scss',
 })
