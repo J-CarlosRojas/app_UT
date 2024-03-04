@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators, FormBuilder } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { Food } from '../shared/food.model';
 import { FoodService } from '../shared/food.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -18,7 +19,7 @@ import { FoodService } from '../shared/food.service';
 })
 
 
-export class FormFoodComponent {
+export class FormFoodComponent implements OnInit {
 
   foodForm = this.formBuilder.group({
     itemImage: ['', Validators.required],
@@ -30,6 +31,50 @@ export class FormFoodComponent {
 
   constructor(private formBuilder:FormBuilder, public servicioComida:FoodService){
 
+  }
+
+  foodId:number = -1
+  edit:boolean = false
+  route: ActivatedRoute = inject(ActivatedRoute)
+  food?:Food = {
+    id:0,
+    name:'',
+    description:'',
+    category:'',
+    image:'',
+    price:0
+
+  }
+
+
+  ngOnInit(): void {
+    if(this.route.snapshot.params['id']){
+      this.edit = true
+      this.foodId = Number(this.route.snapshot.params['id']);
+
+      this.food = this.servicioComida.getOne(this.foodId)
+
+      if(this.food){
+        //this.itemName?.setValue(this.food?.name)
+        //this.itemCategory?.setValue(this.food?.category)
+
+        this.foodForm.patchValue({
+          itemImage:this.food.image,
+          itemName:this.food.name,
+          itemCategory:this.food.category,
+          itemDescription:this.food.description,
+          itemPrice:this.food.price.toString()
+
+        })
+      }
+       
+
+      console.log(this.food?.id)
+    }
+  }
+
+  public updateData(){
+    console.log("actualizar comida")
   }
 
   public sendData(){

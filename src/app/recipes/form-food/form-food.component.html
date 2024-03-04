@@ -1,72 +1,82 @@
 <!--Formulario para ingresar items-->
-<form [formGroup]="foodForm" class="flex flex-col max-w-80">
-    <!--Input imagen-->
-    <mat-form-field>
-        <mat-label>Imagen</mat-label>
-        <input formControlName="itemImage" matInput type="text">
-        <mat-error *ngIf="foodForm.get('itemImage')?.invalid && foodForm.get('itemImage')?.touched">
-            El Nombre es obligatorio
-        </mat-error>
-    </mat-form-field>
 
 
-    <!--Input nombre-->
-    <mat-form-field>
-        <mat-label>Nombre</mat-label>
-        <input formControlName="itemName" matInput type="text">
-        <mat-error *ngIf="foodForm.get('itemName')?.invalid && foodForm.get('itemName')?.touched">
-            El Nombre es obligatorio
-        </mat-error>
-    </mat-form-field>
-    <!--Select categoria-->
-    <mat-form-field>
-        <mat-label>Categoria</mat-label>
-        <mat-select formControlName="itemCategory">
-            <mat-option value="food">Food</mat-option>
-            <mat-option value="drink">Drink</mat-option>
-        </mat-select>
-        <mat-error *ngIf="foodForm.get('itemCategory')?.invalid && foodForm.get('itemCategory')?.touched">
-            La categoria es obligatoria
-        </mat-error>
-    </mat-form-field>
-    <!--Descripción-->
-    <mat-form-field>
-        <mat-label>Descripción</mat-label>
-        <textarea matInput type="textarea" formControlName="itemDescription"></textarea>
+<div class="flex flex-row gap-6 justify-center items-center">
+    <form [formGroup]="foodForm" class="flex flex-col max-w-80 w-1/2">
 
-        <mat-error>
-            @if(itemDescription?.invalid && (itemDescription?.dirty || itemDescription?.touched)){
-
-            @if(itemDescription?.hasError('required')){
-            <span>Este campo es obligatorio</span>
-            }
-
-            @if(itemDescription?.hasError('minlength')){
-            <span>Debe contener al menos {{itemDescription?.getError('minlength').requiredLength}} caracteres, tiene
-                {{itemDescription?.getError('minlength').actualLength}}</span>
-            }
-
-            }
-        </mat-error>
-
-
-        <!--
-        <mat-error *ngIf="foodForm.get('itemDescription')?.invalid && foodForm.get('itemDescription')?.touched">
-            Una descripcion mayor a 20 caracteres es obligatoria
-        </mat-error>
-       -->
-    </mat-form-field>
-    <!--Precio-->
-    <mat-form-field class="">
-        <mat-label>Precio</mat-label>
-        <input matInput formControlName="itemPrice" type="number" class="price-rigth-align">
-        <span matTextPrefix>$&nbsp;</span>
-        <span matTextSuffix>.00</span>
-        <mat-error *ngIf="foodForm.get('itemPrice')?.invalid && foodForm.get('itemPrice')?.touched">
-            Un precio mayor que cero es obligatorio
-        </mat-error>
-    </mat-form-field>
-    <!--Botón agregar-->
-    <button type="submit" mat-stroked-button [disabled]="foodForm.invalid" (click)="sendData()">Agregar</button>
+        <h1 class="text-2xl text-black font-bold gap-6">{{edit ? 'Editar Comida' : 'Añadir Comida'}}</h1>
     
-</form>
+        <!--Input imagen-->
+        <mat-form-field>
+            <mat-label>Imagen</mat-label>
+            <input formControlName="itemImage" matInput type="text">
+            <mat-error *ngIf="foodForm.get('itemImage')?.invalid && foodForm.get('itemImage')?.touched">
+                El Nombre es obligatorio
+            </mat-error>
+        </mat-form-field>
+    
+    
+        <!--Input nombre-->
+        <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input formControlName="itemName" matInput type="text" required >
+            <mat-error *ngIf="foodForm.get('itemName')?.invalid && foodForm.get('itemName')?.touched">
+                El Nombre es obligatorio
+            </mat-error>
+        </mat-form-field>
+        <!--Select categoria-->
+        <mat-form-field>
+            <mat-label>Categoria</mat-label>
+            <mat-select formControlName="itemCategory">
+                <mat-option value="Comida">Comida</mat-option>
+                <mat-option value="Bebida">Bebida</mat-option>
+            </mat-select>
+            <mat-error *ngIf="foodForm.get('itemCategory')?.invalid && foodForm.get('itemCategory')?.touched">
+                La categoria es obligatoria
+            </mat-error>
+        </mat-form-field>
+        <!--Descripción-->
+        <mat-form-field>
+            <mat-label>Descripción</mat-label>
+            <textarea matInput type="textarea" formControlName="itemDescription"></textarea>
+    
+            <mat-error>
+                @if(itemDescription?.invalid && (itemDescription?.dirty || itemDescription?.touched)){
+    
+                @if(itemDescription?.hasError('required')){
+                <span>Este campo es obligatorio</span>
+                }
+    
+                @if(itemDescription?.hasError('minlength')){
+                <span>Debe contener al menos {{itemDescription?.getError('minlength').requiredLength}} caracteres, tiene
+                    {{itemDescription?.getError('minlength').actualLength}}</span>
+                }
+    
+                }
+            </mat-error>
+    
+    
+            <!--
+            <mat-error *ngIf="foodForm.get('itemDescription')?.invalid && foodForm.get('itemDescription')?.touched">
+                Una descripcion mayor a 20 caracteres es obligatoria
+            </mat-error>
+           -->
+        </mat-form-field>
+        <!--Precio-->
+        <mat-form-field class="">
+            <mat-label>Precio</mat-label>
+            <input matInput formControlName="itemPrice" type="number" class="price-rigth-align">
+            <span matTextPrefix>$&nbsp;</span>
+            <span matTextSuffix>.00</span>
+            <mat-error *ngIf="foodForm.get('itemPrice')?.invalid && foodForm.get('itemPrice')?.touched">
+                Un precio mayor que cero es obligatorio
+            </mat-error>
+        </mat-form-field>
+        <!--Botón agregar-->
+        <button type="submit" mat-stroked-button [disabled]="foodForm.invalid" (click)=" edit? updateData() : sendData() ">{{edit ? 'Actualizar' : 'Añadir'}}</button>
+        
+    </form>
+    <div>
+        <img class="rounded-lg w-full aspect-video object-contain" src="{{food?.image}}" >
+    </div>
+</div>
