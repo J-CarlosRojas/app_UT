@@ -11,7 +11,13 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-food',
   standalone: true,
-  imports: [MatButtonModule, MatCardModule, CurrencyPipe, TitleCasePipe, RouterModule],
+  imports: [
+    MatButtonModule,
+    MatCardModule,
+    CurrencyPipe,
+    TitleCasePipe,
+    RouterModule,
+  ],
   templateUrl: './food.component.html',
   styleUrl: './food.component.scss',
 })
@@ -24,7 +30,7 @@ export class FoodComponent {
 
   openDialog(deleteFood: Food) {
     const dialogRef = this.dialog.open(DialogConfirmComponent, {
-      data: deleteFood
+      data: deleteFood,
     });
 
     dialogRef.afterClosed().subscribe((result) => {

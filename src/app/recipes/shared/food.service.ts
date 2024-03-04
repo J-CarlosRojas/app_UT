@@ -29,7 +29,8 @@ export class FoodService {
     {
       id: 3,
       name: 'Hamburguesa',
-      description: 'Hamburguesa con tocino y queso: Sabor irresistible entre capas.',
+      description:
+        'Hamburguesa con tocino y queso: Sabor irresistible entre capas.',
       category: 'Comida',
       image:
         'https://cdn.forbes.com.mx/2023/05/dia-hamburguesa-e1684977814759-640x360.webp',
@@ -69,7 +70,8 @@ export class FoodService {
     {
       id: 7,
       name: 'Helado',
-      description: 'Variedad de helados: Diversión en cada sabor, delicioso placer frío.',
+      description:
+        'Variedad de helados: Diversión en cada sabor, delicioso placer frío.',
       category: 'Comida',
       image:
         'https://images.hola.com/imagenes/cocina/noticiaslibros/20230412229842/helados-sabores-originales-recetas/1-233-402/helados-varios-adob-t.jpg',
@@ -79,7 +81,8 @@ export class FoodService {
     {
       id: 8,
       name: 'Pastel de Chocolate',
-      description: 'Pastel de chocolate: Tentación irresistible, deleite indulgente.',
+      description:
+        'Pastel de chocolate: Tentación irresistible, deleite indulgente.',
       category: 'Comida',
       image:
         'https://www.azucardominomex.com/sites/azucardominomex_com/files/styles/m/public/2022-09/600x336_PASTEL-DE-CHOCOLATE-BRUCE.jpg.webp?itok=1xSHaWTo',
@@ -95,7 +98,7 @@ export class FoodService {
 
   //Esta función regresa una comida.
   getOne(id: number): Food | undefined {
-    return this.menu.find(item=> item.id === id);
+    return this.menu.find((item) => item.id === id);
   }
 
   //Esta función agrega una comida.
