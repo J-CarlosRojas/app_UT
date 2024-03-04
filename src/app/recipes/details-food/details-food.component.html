@@ -1,0 +1,15 @@
+<div class="flex justify-center">
+  <div class="flex-grow max-w-96 shadow-md text-center text-wrap">
+    <h2 class="font-bold mb-6 mt-5">{{ food?.name }}</h2>
+
+    <p class="text-pretty m-6">
+      {{ food?.description }}
+    </p>
+
+    <h3 class="text-orange-500 font-extrabold">{{ food?.price | currency : "MX" }}</h3>
+    <p class="italic">{{ food?.category }}</p>
+  </div>
+  <div class="flex-grow max-w-xl">
+    <img src="{{ food?.image }}" alt="" />
+  </div>
+</div>
