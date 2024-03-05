@@ -74,13 +74,30 @@ export class FormFoodComponent implements OnInit {
           itemPrice: this.food.price.toString(),
         });
       }
-
-      console.log(this.food?.id);
     }
   }
 
   public updateData() {
-    console.log('actualizar comida');
+    if (this.foodForm.status == 'VALID') {
+      if (
+        this.itemName?.value &&
+        this.itemDescription?.value &&
+        this.itemCategory?.value &&
+        this.itemPrice?.value &&
+        this.itemImage?.value
+      ) {
+        let price = parseInt(this.itemPrice?.value);
+        let comida: Food = {
+          image: this.itemImage?.value,
+          name: this.itemName?.value,
+          description: this.itemDescription?.value,
+          category: this.itemCategory?.value,
+          price: price,
+        };
+
+        this.servicioComida.updateData(comida);
+      }
+    }
   }
 
   public sendData() {
@@ -101,7 +118,6 @@ export class FormFoodComponent implements OnInit {
           price: price,
         };
 
-        console.log(comida.name);
         this.servicioComida.addFood(comida);
       }
     }
