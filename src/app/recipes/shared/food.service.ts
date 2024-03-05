@@ -116,9 +116,9 @@ export class FoodService {
   }
 
   public updateData(newFood: Food) {
-    this.menu.forEach((value, index) => {
-      if (value.id == newFood.id) {
-        value = newFood;
+    this.menu.forEach((item, index) => {
+      if (item.id == newFood.id) {
+        this.menu[index] = newFood; 
       }
     });
   }

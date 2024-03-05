@@ -1,5 +1,5 @@
 <mat-toolbar >
-    <button mat-icon-button (click)="open()" aria-label="Example icon-button with menu icon">
+    <button mat-icon-button (click)="snav.toggle()" aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button>
     <span>My App</span>
@@ -14,7 +14,7 @@
 
   <!--Contenedor y Sidebar-->
   <mat-drawer-container class="w-full h-full pt-10">
-    <mat-drawer mode="side" [opened]="opened" class="w-60 px-6 pt-16">
+    <mat-drawer mode="side" #snav class="w-60 px-6 pt-16">
         <!--Menu de opciones-->
 
         <mat-nav-list>

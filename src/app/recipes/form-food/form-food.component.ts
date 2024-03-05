@@ -13,7 +13,9 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { Food } from '../shared/food.model';
 import { FoodService } from '../shared/food.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { MatIcon } from '@angular/material/icon';
+
 
 @Component({
   selector: 'app-form-food',
@@ -25,6 +27,8 @@ import { ActivatedRoute } from '@angular/router';
     MatSelectModule,
     CommonModule,
     MatButtonModule,
+    MatIcon,
+    RouterModule
   ],
   templateUrl: './form-food.component.html',
   styleUrl: './form-food.component.scss',
@@ -40,7 +44,7 @@ export class FormFoodComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    public servicioComida: FoodService
+    public servicioComida: FoodService, public router:Router 
   ) {}
 
   foodId: number = -1;
@@ -88,14 +92,16 @@ export class FormFoodComponent implements OnInit {
       ) {
         let price = parseInt(this.itemPrice?.value);
         let comida: Food = {
+          id:this.foodId,
           image: this.itemImage?.value,
           name: this.itemName?.value,
           description: this.itemDescription?.value,
           category: this.itemCategory?.value,
           price: price,
         };
-
+//pasando comida al servicio.
         this.servicioComida.updateData(comida);
+        this.router.navigate(['/food/food-list'])
       }
     }
   }
@@ -119,6 +125,7 @@ export class FormFoodComponent implements OnInit {
         };
 
         this.servicioComida.addFood(comida);
+        this.router.navigate(['/food/food-list'])
       }
     }
   }
