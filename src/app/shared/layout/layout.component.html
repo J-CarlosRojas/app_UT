@@ -14,7 +14,7 @@
 
   <!--Contenedor y Sidebar-->
   <mat-drawer-container class="w-full h-full pt-10">
-    <mat-drawer mode="side" #snav class="w-60 px-6 pt-16">
+    <mat-drawer [mode]="mobileQuery.matches ? 'over' : 'side'" #snav [opened]="mobileQuery.matches ? false : true" class="w-60 px-6 pt-16">
         <!--Menu de opciones-->
 
         <mat-nav-list>
