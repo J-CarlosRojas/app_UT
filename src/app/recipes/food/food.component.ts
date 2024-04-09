@@ -26,7 +26,7 @@ export class FoodComponent {
 
   constructor(public serviceFood: FoodService, public dialog: MatDialog) {}
 
-  deleteFood(deleteFood: Food) {}
+  
 
   openDialog(deleteFood: Food) {
     const dialogRef = this.dialog.open(DialogConfirmComponent, {
@@ -36,8 +36,16 @@ export class FoodComponent {
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
       if (result == true) {
-        this.serviceFood.deleteFood(deleteFood);
+        this.delete(deleteFood);
       }
     });
+  }
+
+  public delete(food:Food){
+    this.serviceFood.deleteFood(food).subscribe({
+      next: () => console.log('delete'),
+      error: (e) => console.error('error'),
+      complete: () => console.log('Complete'),
+    })
   }
 }
