@@ -33,7 +33,7 @@ export class DetailsFoodComponent implements OnInit {
       next: (value) => (this.food = value),
       error: (e) => console.error('error'),
       complete: () => console.info('Complete'),
-    })
+    });
 
     //this.food = this.foodService.getOne(this.foodId);
   }

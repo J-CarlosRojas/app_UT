@@ -105,11 +105,11 @@ export class FormFoodComponent implements OnInit {
           price: price,
         };
         //pasando comida al servicio.
-       this.servicioComida.addFood(comida).subscribe({
-        next: (value) => this.updateForm(value),
-        error: (e) => console.error('error'),
-        complete: () => console.info('Complete'),
-       })
+        this.servicioComida.addFood(comida).subscribe({
+          next: (value) => this.updateForm(value),
+          error: (e) => console.error('error'),
+          complete: () => console.info('Complete'),
+        });
         this.router.navigate(['/food/food-list']);
       }
     }

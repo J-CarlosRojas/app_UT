@@ -10,8 +10,6 @@ import { environment } from '../../../environments/environment.development';
 export class FoodService {
   API_URL: string = '';
 
-  
-
   constructor(private http: HttpClient) {
     this.API_URL = `${environment.API_URL}`;
   }
@@ -24,12 +22,12 @@ export class FoodService {
     return this.http.post<Food>(this.API_URL + 'food/save', food);
   }
 
-  public getOneFood(id:number):Observable<Food>{
-    return this.http.get<Food>(this.API_URL + 'food/find/'+id)
+  public getOneFood(id: number): Observable<Food> {
+    return this.http.get<Food>(this.API_URL + 'food/find/' + id);
   }
 
-  public deleteFood(deleteFood:Food):Observable<unknown>{
-    return this.http.delete(this.API_URL + 'food/delete/'+ deleteFood.id)
+  public deleteFood(deleteFood: Food): Observable<unknown> {
+    return this.http.delete(this.API_URL + 'food/delete/' + deleteFood.id);
   }
 
   /*
