@@ -108,9 +108,9 @@ export class FormFoodComponent implements OnInit {
         this.servicioComida.addFood(comida).subscribe({
           next: (value) => this.updateForm(value),
           error: (e) => console.error('error'),
-          complete: () => console.info('Complete'),
+          complete: () => this.router.navigate(['/food/food-list']),
         });
-        this.router.navigate(['/food/food-list']);
+        
       }
     }
   }
