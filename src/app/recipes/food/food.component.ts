@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { Food } from '../shared/food.model';
@@ -7,6 +7,7 @@ import { FoodService } from '../shared/food.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogConfirmComponent } from '../../shared/components/dialog-confirm/dialog-confirm.component';
 import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-food',
@@ -23,6 +24,7 @@ import { RouterModule } from '@angular/router';
 })
 export class FoodComponent {
   @Input() food: Food | undefined;
+  @Output() eventDeleteFood = new EventEmitter<boolean>
 
   constructor(public serviceFood: FoodService, public dialog: MatDialog) {}
 
@@ -44,8 +46,13 @@ export class FoodComponent {
   public delete(food:Food){
     this.serviceFood.deleteFood(food).subscribe({
       next: () => console.log('delete'),
-      error: (e) => console.error('error'),
-      complete: () => console.log('Complete'),
+      error: (e) => console.error(e),
+      complete: () => this.deleteFoodEvent(true),
     })
+  }
+
+  public deleteFoodEvent(value: boolean):void{
+    this.eventDeleteFood.emit(value);
+
   }
 }

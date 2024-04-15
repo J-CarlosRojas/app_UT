@@ -28,4 +28,10 @@ export class FoodListComponent implements OnInit {
       complete: () => console.info('Complete'),
     });
   }
+
+  public foodDeleted(deleted:boolean):void{
+    if(deleted){
+      this.getAllFoods();
+    }
+  }
 }
