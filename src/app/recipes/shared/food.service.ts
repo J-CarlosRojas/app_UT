@@ -14,18 +14,19 @@ export class FoodService {
     this.API_URL = `${environment.API_URL}`;
   }
 
+  //Obterner todas las comidas
   public getAll(): Observable<Food[]> {
     return this.http.get<Food[]>(this.API_URL + 'food/');
   }
-
+  //Agregar comidas
   public addFood(food: Food): Observable<Food> {
     return this.http.post<Food>(this.API_URL + 'food/save', food);
   }
-
+  //Obtener una comida
   public getOneFood(id: number): Observable<Food> {
     return this.http.get<Food>(this.API_URL + 'food/find/' + id);
   }
-
+  //Borrar una comida
   public deleteFood(deleteFood: Food): Observable<unknown> {
     return this.http.delete(this.API_URL + 'food/delete/' + deleteFood.id);
   }

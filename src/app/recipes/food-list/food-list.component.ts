@@ -21,6 +21,7 @@ export class FoodListComponent implements OnInit {
     console.log(this.data);
   }
 
+  //Funcion para obtener todas las comidas
   getAllFoods() {
     this.serviceFood.getAll().subscribe({
       next: (data) => (this.data = data),
@@ -29,6 +30,7 @@ export class FoodListComponent implements OnInit {
     });
   }
 
+  //Funcion para borrar comidas
   public foodDeleted(deleted:boolean):void{
     if(deleted){
       this.getAllFoods();

@@ -26,6 +26,7 @@ export class DetailsFoodComponent implements OnInit {
     price: 0,
   };
 
+  //Arranque del componente
   ngOnInit(): void {
     this.foodId = Number(this.route.snapshot.params['id']);
 
@@ -35,6 +36,6 @@ export class DetailsFoodComponent implements OnInit {
       complete: () => console.info('Complete'),
     });
 
-    //this.food = this.foodService.getOne(this.foodId);
+    
   }
 }

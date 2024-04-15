@@ -8,7 +8,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogConfirmComponent } from '../../shared/components/dialog-confirm/dialog-confirm.component';
 import { RouterModule } from '@angular/router';
 
-
 @Component({
   selector: 'app-food',
   standalone: true,
@@ -24,11 +23,9 @@ import { RouterModule } from '@angular/router';
 })
 export class FoodComponent {
   @Input() food: Food | undefined;
-  @Output() eventDeleteFood = new EventEmitter<boolean>
+  @Output() eventDeleteFood = new EventEmitter<boolean>();
 
   constructor(public serviceFood: FoodService, public dialog: MatDialog) {}
-
-  
 
   openDialog(deleteFood: Food) {
     const dialogRef = this.dialog.open(DialogConfirmComponent, {
@@ -43,16 +40,17 @@ export class FoodComponent {
     });
   }
 
-  public delete(food:Food){
+  //Funcion borrar elementos
+  public delete(food: Food) {
     this.serviceFood.deleteFood(food).subscribe({
       next: () => console.log('delete'),
       error: (e) => console.error(e),
       complete: () => this.deleteFoodEvent(true),
-    })
+    });
   }
 
-  public deleteFoodEvent(value: boolean):void{
+  //Evento que avisa los elementos borrados
+  public deleteFoodEvent(value: boolean): void {
     this.eventDeleteFood.emit(value);
-
   }
 }

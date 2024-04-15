@@ -1,5 +1,6 @@
 export interface Food {
 
+    //Modelo para las comidas
     id?:number;
     name:string;
     description:string;
